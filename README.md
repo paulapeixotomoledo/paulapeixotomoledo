@@ -43,7 +43,7 @@ I work out what neural circuits are computing. That usually means building proba
 
 ### Elsewhere
 
-- [LinkedIn](https://www.linkedin.com/in/paula-peixoto-moledo-0107ba15a/)
+- [LinkedIn](https://www.linkedin.com/in/paula-peixoto-moledo-phd-0107ba15a/)
 - paulapeixotomoledo@gmail.com
 - [Google Scholar](https://scholar.google.com/citations?hl=en&user=OU_nTaIAAAAJ)
 - [ORCID](https://orcid.org/0000-0003-3901-1922)
