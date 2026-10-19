@@ -82,6 +82,9 @@
     height:34px; width:auto; flex-shrink:0; align-self:center;
   }
   .logo-badge img{ height:100%; width:auto; object-fit:contain; display:block; }
+  @media (prefers-color-scheme: dark){
+    .logo-badge img{ filter:brightness(0) invert(1); }
+  }
   .entry-body .role{ font-weight:700; font-size:1rem; }
   .entry-body .org{ font-weight:700; }
   .entry-body .dates{ font-family:-apple-system,"Segoe UI",sans-serif; font-size:0.8rem; color:var(--sub); float:right; }
