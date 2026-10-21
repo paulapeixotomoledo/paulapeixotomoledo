@@ -142,6 +142,9 @@
   }
   .pcard ul{ margin:0; padding-left:20px; }
   .pcard li{ margin-bottom:7px; font-size:0.95rem; }
+  .video-frame{ border-radius:8px; overflow:hidden; margin:14px 0 18px 0; border:1px solid var(--border); background:#000; line-height:0; }
+  .video-frame video{ width:100%; display:block; }
+  .video-caption{ font-size:0.78rem; color:var(--sub); margin:8px 0 14px 0; font-style:italic; }
 
   /* ---------- Interp tab (reused styles) ---------- */
   section.finding{ margin-bottom:40px; }
@@ -365,6 +368,12 @@
       <span class="statchip">30–42 sessions each</span>
       <span class="statchip">4 adversarial controls</span>
     </div>
+    <div class="video-frame">
+      <video autoplay muted loop playsinline poster="media/decoder_poster.jpg">
+        <source src="media/decoder_movie.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="video-caption">Real-time position decoding from hippocampal calcium activity (179 neurons, ridge decoder, cross-validated on held-out data) &mdash; decoded position shown 200ms ahead to account for the calcium-signal delay.</p>
     <ul>
       <li>Built the end-to-end decoding pipeline from raw imaging data: non-rigid motion correction, cross-session single-cell registration tracking the same identified neurons across the full recording period, neuron-count normalization, and stratified cross-validation.</li>
       <li>Benchmarked multiple decoder architectures under matched evaluation and diagnosed <i>why</i> the weaker performers failed, not just which ranked lowest.</li>
