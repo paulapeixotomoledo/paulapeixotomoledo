@@ -146,7 +146,12 @@
   .video-row .video-col{ flex:1 1 300px; min-width:0; }
   .video-row .video-frame{ margin:0 0 8px 0; }
   .video-frame{ border-radius:8px; overflow:hidden; margin:14px 0 18px 0; border:1px solid var(--border); background:#000; line-height:0; }
-  .video-frame video{ width:100%; display:block; }
+  .video-frame video{ width:100%; display:block; cursor:zoom-in; }
+  .video-lightbox{ display:none; position:fixed; inset:0; background:rgba(10,12,14,0.9); z-index:999; align-items:center; justify-content:center; padding:24px; }
+  .video-lightbox.active{ display:flex; }
+  .video-lightbox video{ max-width:92vw; max-height:88vh; border-radius:8px; display:block; }
+  .video-lightbox .lb-close{ position:absolute; top:18px; right:24px; width:40px; height:40px; border-radius:50%; border:none; background:rgba(255,255,255,0.12); color:#fff; font-size:1.5rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .video-lightbox .lb-close:hover{ background:rgba(255,255,255,0.22); }
   .video-caption{ font-size:0.78rem; color:var(--sub); margin:8px 0 14px 0; font-style:italic; }
   .data-source{ display:flex; align-items:center; gap:12px; margin:0 0 18px 0; }
   .data-source .logo-badge{ height:28px; }
@@ -487,6 +492,41 @@
 </div>
 
 <div class="tooltip" id="tip"></div>
+
+<div class="video-lightbox" id="videoLightbox">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <video id="lbVideo" controls playsinline></video>
+</div>
+
+<script>
+(function(){
+  var lb = document.getElementById('videoLightbox');
+  var lbVideo = document.getElementById('lbVideo');
+  var lbClose = document.getElementById('lbClose');
+  function openLB(src, poster){
+    lbVideo.src = src;
+    lbVideo.poster = poster || '';
+    lb.classList.add('active');
+    lbVideo.currentTime = 0;
+    lbVideo.play();
+  }
+  function closeLB(){
+    lb.classList.remove('active');
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    lbVideo.load();
+  }
+  document.querySelectorAll('.video-frame video').forEach(function(v){
+    v.addEventListener('click', function(){
+      var source = v.querySelector('source');
+      openLB(source ? source.src : v.src, v.getAttribute('poster'));
+    });
+  });
+  lbClose.addEventListener('click', closeLB);
+  lb.addEventListener('click', function(e){ if(e.target === lb) closeLB(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLB(); });
+})();
+</script>
 
 <script>
 document.querySelectorAll('.tabbtn').forEach(btn=>{
